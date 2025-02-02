@@ -1,10 +1,14 @@
 class Enemy {
     position: { x: number; y: number };
+    width: number;
+    height: number;
     health: number;
 
-    constructor(x: number, y: number, health: number) {
+    constructor(x: number, y: number, width: number, height: number, health: number) {
         this.position = { x, y };
         this.health = health;
+        this.width = width;
+        this.height = height;
     }
 
     move(dx: number, dy: number) {
@@ -19,11 +23,14 @@ class Enemy {
     takeDamage(amount: number) {
         this.health -= amount;
         if (this.health <= 0) {
-            this.destroy();
+            this.die();
         }
     }
-
+    die() {
+        console.log('Enemy had died')
+    }
     private destroy() {
         // Logic for enemy destruction
     }
 }
+export default Enemy

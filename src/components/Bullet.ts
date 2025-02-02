@@ -1,10 +1,14 @@
 class Bullet {
     position: { x: number; y: number };
     speed: number;
+    width: number;
+    height: number;
 
-    constructor(x: number, y: number, speed: number) {
+    constructor(x: number, y: number, speed: number, width: number, height: number) {
         this.position = { x, y };
         this.speed = speed;
+        this.width = width;
+        this.height = height;
     }
 
     move() {

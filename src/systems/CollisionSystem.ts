@@ -1,3 +1,6 @@
+import Bullet from '../components/Bullet';
+import Enemy from '../components/Enemy';
+
 export class CollisionSystem {
     checkCollision(bullets: Bullet[], enemies: Enemy[]): void {
         bullets.forEach((bullet, bulletIndex) => {
@@ -21,10 +24,11 @@ export class CollisionSystem {
 
     private handleCollision(bulletIndex: number, enemyIndex: number, bullets: Bullet[], enemies: Enemy[]): void {
         bullets.splice(bulletIndex, 1); // Remove the bullet
-        enemies[enemyIndex].takeDamage(); // Damage the enemy
+        enemies[enemyIndex].takeDamage(10); // Damage the enemy
 
         if (enemies[enemyIndex].health <= 0) {
             enemies.splice(enemyIndex, 1); // Remove the enemy if health is zero
         }
     }
 }
+export default CollisionSystem;

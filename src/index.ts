@@ -1,10 +1,10 @@
 // This file is the entry point of the Space Invader game.
 // It initializes the game, sets up the game loop, and manages the game state.
 
-import { Player } from './components/Player';
-import { Enemy } from './components/Enemy';
-import { Bullet } from './components/Bullet';
-import { CollisionSystem } from './systems/CollisionSystem';
+import Player from './components/Player';
+import Enemy from './components/Enemy';
+import Bullet from './components/Bullet';
+import CollisionSystem from './systems/CollisionSystem';
 import { RenderSystem } from './systems/RenderSystem';
 
 class Game {
@@ -16,11 +16,12 @@ class Game {
     private gameLoop: any;
 
     constructor() {
-        this.player = new Player();
+        this.player = new Player(0, 0);
         this.enemies = [];
         this.bullets = [];
         this.collisionSystem = new CollisionSystem();
-        this.renderSystem = new RenderSystem();
+        const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
+        this.renderSystem = new RenderSystem(canvas);
         this.initialize();
     }
 
@@ -50,7 +51,7 @@ class Game {
     }
 
     private render() {
-        this.renderSystem.render(this.player, this.enemies, this.bullets);
+        this.renderSystem.render([this.player, ...this.enemies, ...this.bullets]);
     }
 }
 
